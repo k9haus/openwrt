@@ -1395,6 +1395,22 @@ endef
 $(eval $(call KernelPackage,usb-net-rtl8152))
 
 
+define KernelPackage/usb-net-rtl8153-ecm
+  TITLE:=Kernel module for USB-to-Ethernet Realtek convertors (ECM alt mode)
+  DEPENDS:=+kmod-usb-net-rtl8152
+  KCONFIG:=CONFIG_USB_RTL8153_ECM
+  FILES:=$(LINUX_DIR)/drivers/$(USBNET_DIR)/r8153_ecm.ko
+  AUTOLOAD:=$(call AutoProbe,r8153_ecm)
+  $(call AddDepends/usb-net)
+endef
+
+define KernelPackage/usb-net-rtl8153-ecm/description
+ Kernel module for USB-to-Ethernet Realtek 8153 USB2.0/3.0 convertors (ECM alt mode)
+endef
+
+$(eval $(call KernelPackage,usb-net-rtl8153-ecm))
+
+
 define KernelPackage/usb-net-sr9700
   TITLE:=Support for CoreChip SR9700 ethernet devices
   KCONFIG:=CONFIG_USB_NET_SR9700
